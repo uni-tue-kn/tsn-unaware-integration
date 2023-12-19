@@ -1,0 +1,3 @@
+package scip;
+
+@license(LGPL);
