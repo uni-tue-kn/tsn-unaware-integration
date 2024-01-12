@@ -157,22 +157,22 @@ def load_dataset(path,types=None,dataset="test"):
     iat_features = []
     labels = []
     lengths = []
-    stddevs = []
+    coeffs = []
 
     if types is None:
         for key, val in data[dataset].items():
                 iat_features.extend(val["samples"])
                 labels.extend(val["labels"])
                 lengths.extend(val["pattern_length"])
-                stddevs.extend(val["stddevs"])
+                coeffs.extend(val["coeffs"])
     else:
         for key, val in data[dataset].items():
             if val["type"] in types:
                 iat_features.extend(val["samples"])
                 labels.extend(val["labels"])
                 lengths.extend(val["pattern_length"])
-                stddevs.extend(val["stddevs"])
+                coeffs.extend(val["coeffs"])
 
 
-    return iat_features, labels, lengths, stddevs
+    return iat_features, labels, lengths, coeffs
 

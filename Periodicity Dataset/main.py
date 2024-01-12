@@ -23,7 +23,7 @@ def sample_stream_data(period_range, stream_count, stream_lengths, return_dict):
     samples = []
     labels = []
     lengths = []
-    stddevs = []
+    coeffs = []
     
     for i in tqdm(range(0, stream_count), "Generating {} periodic streams".format(stream_count)):
 
@@ -43,7 +43,7 @@ def sample_stream_data(period_range, stream_count, stream_lengths, return_dict):
         samples.append(np.asarray(np.around(sample, ROUND_DIGITS)))
         labels.append(np.asarray(label))
         lengths.append(1)
-        stddevs.append(nstddev)
+        coeffs.append(nstddev)
 
 
     # Store stream information
@@ -52,7 +52,7 @@ def sample_stream_data(period_range, stream_count, stream_lengths, return_dict):
         "samples": samples,
         "labels": labels,
         "pattern_length": lengths,
-        "stddevs": stddevs
+        "coeffs": coeffs
     }
 
     # Generate non-periodic streams, also due non-periodic streams that look like patterns
@@ -61,7 +61,7 @@ def sample_stream_data(period_range, stream_count, stream_lengths, return_dict):
     samples = []
     labels = []
     lengths = []
-    stddevs = []
+    coeffs = []
     
     for i in tqdm(range(0, stream_count), "Generating {} non-periodic streams".format(stream_count)):
 
@@ -81,7 +81,7 @@ def sample_stream_data(period_range, stream_count, stream_lengths, return_dict):
         samples.append(np.asarray(np.around(sample, ROUND_DIGITS)))
         labels.append(np.asarray(label))
         lengths.append(1)
-        stddevs.append(nstddev)
+        coeffs.append(nstddev)
 
     # Store stream information
     return_dict["nonperiodic"] = {
@@ -89,7 +89,7 @@ def sample_stream_data(period_range, stream_count, stream_lengths, return_dict):
         "samples": samples,
         "labels": labels,
         "pattern_length": lengths,
-        "stddevs": stddevs
+        "coeffs": coeffs
     }
 
     # Generate periodic pattern streams
@@ -98,7 +98,7 @@ def sample_stream_data(period_range, stream_count, stream_lengths, return_dict):
     samples = []
     labels = []
     lengths = []
-    stddevs = []
+    coeffs = []
 
     for i in tqdm(range(0, stream_count), "Generating {} periodic pattern streams".format(stream_count)):
 
@@ -122,7 +122,7 @@ def sample_stream_data(period_range, stream_count, stream_lengths, return_dict):
         labels.append(np.asarray(label))
 
         lengths.append(pattern_length)
-        stddevs.append(nstddev)
+        coeffs.append(nstddev)
 
     # Store stream information
     return_dict["pattern"] = {
@@ -130,7 +130,7 @@ def sample_stream_data(period_range, stream_count, stream_lengths, return_dict):
         "samples": samples,
         "labels": labels,
         "pattern_length": lengths,
-        "stddevs": stddevs
+        "coeffs": coeffs
     }
 
     # Generate near periodic streams
@@ -139,7 +139,7 @@ def sample_stream_data(period_range, stream_count, stream_lengths, return_dict):
     samples = []
     labels = []
     lengths = []
-    stddevs = []
+    coeffs = []
 
     for i in tqdm(range(0, stream_count), "Generating {} near periodic streams".format(stream_count)):
 
@@ -158,7 +158,7 @@ def sample_stream_data(period_range, stream_count, stream_lengths, return_dict):
         samples.append(np.asarray(np.around(sample, ROUND_DIGITS)))
         labels.append(np.asarray(label))
         lengths.append(1)
-        stddevs.append(nstddev)
+        coeffs.append(nstddev)
 
     # Store stream information
     return_dict["near"] = {
@@ -166,7 +166,7 @@ def sample_stream_data(period_range, stream_count, stream_lengths, return_dict):
         "samples": samples,
         "labels": labels,
         "pattern_length": lengths,
-        "stddevs": stddevs
+        "coeffs": coeffs
     }
 
     return
