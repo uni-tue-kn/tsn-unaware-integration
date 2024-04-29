@@ -92,6 +92,9 @@ void StreamClassifier::parseXML(StreamIDTuple* stream, StreamDbEntry* entry) {
             uint16_t maxFrameSize = (uint16_t) std::strtoul(characteristics->getFirstChildWithTag("maxFrameLength")->getNodeValue(), nullptr, 10);
             uint16_t maxFramesPerInterval = (uint16_t) std::strtoul(characteristics->getFirstChildWithTag("maxFramesPerInterval")->getNodeValue(), nullptr, 10);
 
+            uint8_t numSeamlessTrees = (uint8_t) std::strtoul(characteristics->getFirstChildWithTag("numSeamlessTrees")->getNodeValue(), nullptr, 10);
+            uint32_t maxLatency = (uint32_t) std::strtoul(characteristics->getFirstChildWithTag("maxLatency")->getNodeValue(), nullptr, 10);
+
             // Get mac address from XML
             MacAddress* mac = new MacAddress(stream->getAttribute("mac"));
 
@@ -108,8 +111,8 @@ void StreamClassifier::parseXML(StreamIDTuple* stream, StreamDbEntry* entry) {
                             0 // No transmission selection algorithm on talker
                     },
                     { // UserToNetworkRequirements
-                            0,
-                            2000
+                            numSeamlessTrees,
+                            maxLatency
                     }
             };
 
